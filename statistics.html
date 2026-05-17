@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statistics — HabitFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <aside class="sidebar">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M5 12a7 7 0 1 0 14 0c0-3-2-5-7-10-5 5-7 7-7 10z"/></svg>
+        </span>
+        HabitFlow
+      </a>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>
+          Dashboard
+        </a>
+        <a href="statistics.html" class="active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Statistics
+        </a>
+        <a href="habit.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          Habits
+        </a>
+        <a href="#">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Calendar
+        </a>
+        <a href="#">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Profile
+        </a>
+        <a href="settings.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1A2 2 0 1 1 4.3 17l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1A2 2 0 1 1 7 4.3l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+          Settings
+        </a>
+      </nav>
+
+      <a href="index.html" class="logout">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Log out
+      </a>
+    </aside>
+    <div class="backdrop"></div>
+
+    <main class="main">
+      <div class="main-header">
+        <button class="menu-toggle" aria-label="Open menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <h1>Statistics</h1>
+        <div class="select-wrap">
+          <select class="period-select">
+            <option>This Month</option>
+            <option>This Week</option>
+            <option>This Year</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Stat grid -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="label">Completion Rate</div>
+          <div class="value">78%</div>
+          <div class="delta">+12% from last month</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Total Habits</div>
+          <div class="value">6</div>
+          <div class="delta">+1 from last month</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Total Completions</div>
+          <div class="value">89</div>
+          <div class="delta">+23 from last month</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Best Streak</div>
+          <div class="value">28</div>
+          <div class="delta muted">days</div>
+        </div>
+      </div>
+
+      <!-- Charts row -->
+      <div class="chart-row">
+        <div class="chart-card-big">
+          <h3>Completion Over Time</h3>
+          <svg class="line-chart" viewBox="0 0 600 220" preserveAspectRatio="none">
+            <!-- gridlines -->
+            <g stroke="#ECECEC" stroke-width="1">
+              <line x1="40" y1="20"  x2="590" y2="20"/>
+              <line x1="40" y1="70"  x2="590" y2="70"/>
+              <line x1="40" y1="120" x2="590" y2="120"/>
+              <line x1="40" y1="170" x2="590" y2="170"/>
+            </g>
+            <!-- y labels -->
+            <g fill="#9CA3AF" font-size="11" font-family="Inter">
+              <text x="0" y="24">100%</text>
+              <text x="5" y="74">75%</text>
+              <text x="5" y="124">50%</text>
+              <text x="5" y="174">25%</text>
+              <text x="15" y="200">0%</text>
+            </g>
+            <!-- x labels -->
+            <g fill="#9CA3AF" font-size="11" font-family="Inter" text-anchor="middle">
+              <text x="100" y="210">Apr 20</text>
+              <text x="225" y="210">Apr 27</text>
+              <text x="350" y="210">May 4</text>
+              <text x="475" y="210">May 11</text>
+              <text x="585" y="210">May 17</text>
+            </g>
+            <!-- area + line -->
+            <defs>
+              <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"  stop-color="#5B4CF6" stop-opacity=".2"/>
+                <stop offset="100%" stop-color="#5B4CF6" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M 50 140 L 110 100 L 175 130 L 240 80 L 305 110 L 370 70 L 435 90 L 500 50 L 580 40 L 580 190 L 50 190 Z" fill="url(#lineGrad)"/>
+            <polyline points="50,140 110,100 175,130 240,80 305,110 370,70 435,90 500,50 580,40"
+                      fill="none" stroke="#5B4CF6" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- points -->
+            <g fill="#5B4CF6">
+              <circle cx="50"  cy="140" r="3.5"/>
+              <circle cx="110" cy="100" r="3.5"/>
+              <circle cx="175" cy="130" r="3.5"/>
+              <circle cx="240" cy="80"  r="3.5"/>
+              <circle cx="305" cy="110" r="3.5"/>
+              <circle cx="370" cy="70"  r="3.5"/>
+              <circle cx="435" cy="90"  r="3.5"/>
+              <circle cx="500" cy="50"  r="3.5"/>
+              <circle cx="580" cy="40"  r="3.5"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="chart-card-big">
+          <h3>Habit Completion</h3>
+          <div class="donut-wrap">
+            <div class="donut">
+              <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="42" fill="none" stroke="#F3F4F6" stroke-width="12"/>
+                <!-- 78% complete, 17% missed, 5% skipped on circumference of ~264 -->
+                <circle cx="50" cy="50" r="42" fill="none" stroke="#22C55E" stroke-width="12"
+                        stroke-dasharray="206 264" stroke-dashoffset="0"/>
+                <circle cx="50" cy="50" r="42" fill="none" stroke="#EF4444" stroke-width="12"
+                        stroke-dasharray="45 264" stroke-dashoffset="-206"/>
+                <circle cx="50" cy="50" r="42" fill="none" stroke="#9CA3AF" stroke-width="12"
+                        stroke-dasharray="13 264" stroke-dashoffset="-251"/>
+              </svg>
+              <div class="pct">78%<span>completed</span></div>
+            </div>
+            <div class="legend">
+              <div class="item"><span class="dot" style="background:#22C55E"></span> Completed <span class="val">78%</span></div>
+              <div class="item"><span class="dot" style="background:#EF4444"></span> Missed <span class="val">17%</span></div>
+              <div class="item"><span class="dot" style="background:#9CA3AF"></span> Skipped <span class="val">5%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom row -->
+      <div class="bottom-row">
+        <div class="chart-card-big">
+          <h3>Top Habits</h3>
+          <div class="rank-list">
+            <div class="rank-item">
+              <div class="n">1</div>
+              <div class="nm">Read Book</div>
+              <div class="bar"><i style="width:90%"></i></div>
+              <div class="v">90%</div>
+            </div>
+            <div class="rank-item">
+              <div class="n">2</div>
+              <div class="nm">Drink Water</div>
+              <div class="bar"><i style="width:85%"></i></div>
+              <div class="v">85%</div>
+            </div>
+            <div class="rank-item">
+              <div class="n">3</div>
+              <div class="nm">Exercise</div>
+              <div class="bar"><i style="width:70%"></i></div>
+              <div class="v">70%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card-big">
+          <h3>Streaks</h3>
+          <div class="streak-list">
+            <div class="streak-item">
+              <div class="fire">🔥</div>
+              <div class="nm">Drink Water</div>
+              <div class="v">12 days</div>
+            </div>
+            <div class="streak-item">
+              <div class="fire">🔥</div>
+              <div class="nm">Read Book</div>
+              <div class="v">15 days</div>
+            </div>
+            <div class="streak-item">
+              <div class="fire">🔥</div>
+              <div class="nm">Exercise</div>
+              <div class="v">7 days</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
