@@ -3,11 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Drink Water — HabitFlow</title>
+  <title>Manage Routines — HabitFlow</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Premium Management Layout Matrix */
+    .manage-list { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+    .manage-card { background: var(--bg-card); padding: 20px; border-radius: 14px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; transition: all 0.2s ease; }
+    .manage-card:hover { border-color: var(--purple); }
+    .manage-left { display: flex; align-items: center; gap: 16px; }
+    .manage-meta h4 { font-size: 16px; font-weight: 600; color: var(--text); margin: 0 0 4px 0; }
+    .manage-meta p { font-size: 13px; color: var(--text-2); margin: 0; }
+    
+    .manage-right-deck { display: flex; align-items: center; gap: 24px; }
+    .freq-badge { background: var(--bg-app); color: var(--text-2); font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 6px; border: none; cursor: pointer; transition: all 0.2s; }
+    .freq-badge:hover { filter: brightness(0.95); }
+    
+    /* Interactive Check Button component inside Setup panel */
+    .manage-check-btn { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--border); background: transparent; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; transition: all 0.2s; }
+    .manage-check-btn:hover { border-color: #22C55E; }
+    .manage-check-btn.completed { background: #22C55E; border-color: #22C55E; box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3); }
+  </style>
 </head>
 <body>
 
@@ -15,185 +33,40 @@
 
     <aside class="sidebar">
       <a href="index.html" class="logo">
-        <span class="logo-mark">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M5 12a7 7 0 1 0 14 0c0-3-2-5-7-10-5 5-7 7-7 10z"/></svg>
-        </span>
+        <span class="logo-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v6"/><path d="M5 12a7 7 0 1 0 14 0c0-3-2-5-7-10-5 5-7 7-7 10z"/></svg></span>
         HabitFlow
       </a>
-
       <nav class="sidebar-nav">
-        <a href="dashboard.html">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>
-          Dashboard
-        </a>
-        <a href="statistics.html">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          Statistics
-        </a>
-        <a href="habit.html" class="active">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-          Habits
-        </a>
-        <a href="#">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Calendar
-        </a>
-        <a href="#">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          Profile
-        </a>
-        <a href="settings.html">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1A2 2 0 1 1 4.3 17l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1A2 2 0 1 1 7 4.3l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
-          Settings
-        </a>
+        <a href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>Dashboard</a>
+        <a href="statistics.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Statistics</a>
+        <a href="habit.html" class="active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Habits</a>
+        <a href="calendar.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Calendar</a>
+        <a href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
+        <a href="settings.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8 heart-3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1A2 2 0 1 1 4.3 17l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1A2 2 0 1 1 7 4.3l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Settings</a>
       </nav>
-
-      <a href="index.html" class="logout">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-        Log out
-      </a>
+      <a href="index.html" class="logout"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log out</a>
     </aside>
     <div class="backdrop"></div>
 
     <main class="main">
-      <button class="menu-toggle" aria-label="Open menu" style="margin-bottom:14px">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
+      <div class="main-header">
+        <button class="menu-toggle" aria-label="Open menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <h1>Habit Setup</h1>
+        <div style="width: 38px"></div>
+      </div>
 
-      <a href="dashboard.html" class="back-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        Back
-      </a>
-
-      <div class="detail-head">
-        <div class="detail-title">
-          <div class="ic">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s5.5 6.4 5.5 11.3a5.5 5.5 0 1 1-11 0C6.5 9.1 12 2.7 12 2.7z"/></svg>
-          </div>
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div class="section-head" style="margin-top: 0;">
           <div>
-            <h1>Drink Water
-              <button class="edit" aria-label="Edit">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.1 2.1 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-              </button>
-            </h1>
-            <p>8 glasses a day · Created on May 1, 2024</p>
+            <h2 style="margin: 0 0 4px 0; font-size: 18px; font-weight: 700;">Your Routines</h2>
+            <p style="color: var(--text-2); font-size: 14px; margin: 0;">Mark tasks completed, set frequencies, or manage active rulesets.</p>
           </div>
         </div>
 
-        <div class="streak-pill">
-          <div class="n">12</div>
-          <div class="l">day streak 🔥</div>
-        </div>
+        <div class="manage-list" id="management-list-container"></div>
       </div>
-
-      <!-- Tabs -->
-      <div class="tabs">
-        <button class="tab">Overview</button>
-        <button class="tab active">Calendar</button>
-        <button class="tab">Notes</button>
-        <button class="tab">Insights</button>
-      </div>
-
-      <!-- Body -->
-      <div class="detail-body">
-        <!-- Calendar -->
-        <div class="calendar-big">
-          <div class="cal-head">
-            <h3>May 2026</h3>
-            <div class="cal-nav">
-              <button aria-label="Previous">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-              </button>
-              <button aria-label="Next">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="cal-grid">
-            <div class="dh">Mon</div><div class="dh">Tue</div><div class="dh">Wed</div>
-            <div class="dh">Thu</div><div class="dh">Fri</div><div class="dh">Sat</div><div class="dh">Sun</div>
-
-            <!-- Week 1: prev month days then May 1-3 -->
-            <div class="cal-day mute">28</div>
-            <div class="cal-day mute">29</div>
-            <div class="cal-day mute">30</div>
-            <div class="cal-day done">1</div>
-            <div class="cal-day done">2</div>
-            <div class="cal-day done">3</div>
-            <div class="cal-day done">4</div>
-            <!-- Week 2 -->
-            <div class="cal-day done">5</div>
-            <div class="cal-day done">6</div>
-            <div class="cal-day done">7</div>
-            <div class="cal-day done">8</div>
-            <div class="cal-day done">9</div>
-            <div class="cal-day done">10</div>
-            <div class="cal-day done">11</div>
-            <!-- Week 3 -->
-            <div class="cal-day done">12</div>
-            <div class="cal-day done">13</div>
-            <div class="cal-day done">14</div>
-            <div class="cal-day done">15</div>
-            <div class="cal-day done">16</div>
-            <div class="cal-day today">17</div>
-            <div class="cal-day">18</div>
-            <!-- Week 4 -->
-            <div class="cal-day">19</div>
-            <div class="cal-day">20</div>
-            <div class="cal-day">21</div>
-            <div class="cal-day">22</div>
-            <div class="cal-day">23</div>
-            <div class="cal-day">24</div>
-            <div class="cal-day">25</div>
-            <!-- Week 5 -->
-            <div class="cal-day">26</div>
-            <div class="cal-day">27</div>
-            <div class="cal-day">28</div>
-            <div class="cal-day">29</div>
-            <div class="cal-day">30</div>
-            <div class="cal-day">31</div>
-            <div class="cal-day mute">1</div>
-          </div>
-        </div>
-
-        <!-- Side cards -->
-        <div class="side-cards">
-          <div class="month-stats">
-            <div class="label">This Month</div>
-            <div class="pct">85%</div>
-            <div class="desc">completion rate</div>
-            <div class="progress"><i></i></div>
-          </div>
-
-          <div class="month-stats">
-            <div class="label" style="margin-bottom: 14px">Stats</div>
-            <div class="mini-stats">
-              <div class="mini-stat">
-                <div class="ic a">12</div>
-                <div>
-                  <div class="v">12 day</div>
-                  <div class="l">current streak</div>
-                </div>
-              </div>
-              <div class="mini-stat">
-                <div class="ic b">28</div>
-                <div>
-                  <div class="v">28 day</div>
-                  <div class="l">longest streak</div>
-                </div>
-              </div>
-              <div class="mini-stat">
-                <div class="ic c">18</div>
-                <div>
-                  <div class="v">18 days</div>
-                  <div class="l">completed</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </main>
   </div>
 
