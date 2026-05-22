@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>History Calendar — HabitFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Premium UI Layout Specs matching your reference image */
+    .calendar-workspace { display: grid; grid-template-columns: 240px 1fr 280px; gap: 24px; max-width: 1200px; margin: 0 auto; align-items: start; }
+    
+    /* Left Sidebar: Habit Selector Menu */
+    .habit-selector-box { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+    .selector-heading { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; color: var(--text-3); padding-left: 8px; margin-bottom: 4px; text-transform: uppercase; }
+    .select-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; cursor: pointer; border: none; background: transparent; text-align: left; width: 100%; transition: all 0.2s; }
+    .select-item h5 { font-size: 14px; font-weight: 500; margin: 0; color: var(--text); }
+    .select-item:hover { background: var(--bg-app); }
+    .select-item.active { background: var(--purple-soft); }
+    .select-item.active h5 { color: var(--purple); font-weight: 600; }
+    .sel-dot { width: 8px; height: 8px; border-radius: 50%; background: #9CA3AF; }
+    .sel-dot.all { background: var(--purple); }
+    .sel-dot.blue { background: #3B82F6; }
+    .sel-dot.orange { background: #F97316; }
+    .sel-dot.green { background: #10B981; }
+    .sel-dot.violet { background: #8B5CF6; }
+
+    /* Center Section: Calendar Grid Container */
+    .calendar-main-card { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+    .cal-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .cal-header-row h3 { font-size: 16px; font-weight: 700; color: var(--text); margin: 0; }
+    
+    /* Interactive Calendar Dot Indicators */
+    .cal-day { position: relative; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: var(--text); border-radius: 8px; }
+    .cal-day.mute { color: var(--text-3); opacity: 0.4; }
+    
+    /* Blue circle indicator around the real-world current date */
+    .cal-day.today { background: var(--purple-soft); color: var(--purple); font-weight: 700; border: 1px solid var(--border); }
+    .cal-day.today::after { content: ''; position: absolute; width: 6px; height: 6px; background: var(--purple); border-radius: 50%; bottom: 6px; }
+    
+    /* Filled circles on days where habits were completed */
+    .cal-day.checked-day { background: #E6F4EA; color: #137333; font-weight: 600; border-radius: 50%; max-width: 38px; max-height: 38px; margin: auto; }
+    body.dark .cal-day.checked-day { background: #1B4D22; color: #E6F4EA; }
+
+    /* Right Sidebar: Contextual Insights Panel */
+    .insights-panel-card { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); padding: 24px; }
+    .metric-block { margin-bottom: 24px; }
+    .metric-block span { font-size: 12px; color: var(--text-2); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; }
+    .metric-display-val { font-size: 32px; font-weight: 800; color: var(--text); margin-top: 4px; }
+    .context-stats-list { display: flex; flex-direction: column; gap: 14px; border-top: 1px solid var(--border); padding-top: 20px; }
+    .stat-row-item { display: flex; align-items: center; gap: 12px; }
+    .stat-row-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .stat-row-text h5 { font-size: 13px; font-weight: 600; margin: 0; color: var(--text); }
+    .stat-row-text p { font-size: 11px; margin: 0; color: var(--text-2); }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <aside class="sidebar">
+      <a href="index.html" class="logo">
+        <span class="logo-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v6"/><path d="M5 12a7 7 0 1 0 14 0c0-3-2-5-7-10-5 5-7 7-7 10z"/></svg></span>
+        HabitFlow
+      </a>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>Dashboard</a>
+        <a href="statistics.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Statistics</a>
+        <a href="habit.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Habits</a>
+        <a href="calendar.html" class="active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Calendar</a>
+        <a href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
+        <a href="settings.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1A2 2 0 1 1 4.3 17l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1A2 2 0 1 1 7 4.3l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Settings</a>
+      </nav>
+      <a href="index.html" class="logout"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log out</a>
+    </aside>
+    <div class="backdrop"></div>
+
+    <main class="main">
+      <div class="main-header">
+        <button class="menu-toggle" aria-label="Open menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <h1 style="font-size: 22px; font-weight: 700; margin: 0;">Interactive Calendar Log</h1>
+        <div style="width: 38px"></div>
+      </div>
+
+      <div class="calendar-workspace">
+        
+        <div class="habit-selector-box" id="calendar-habit-menu">
+          <div class="selector-heading">Select Scope</div>
+          <button class="select-item active" data-id="all">
+            <div class="sel-dot all"></div>
+            <h5>All Habits</h5>
+          </button>
+        </div>
+
+        <div class="calendar-main-card">
+          <div class="cal-header-row">
+            <h3 id="calendar-month-title">Loading Month...</h3>
+          </div>
+          <div class="cal-grid" id="calendar-dynamic-grid-element"></div>
+        </div>
+
+        <div class="insights-panel-card" id="calendar-insights-card">
+          <div class="metric-block">
+            <span id="insights-meta-title">Completion Rate</span>
+            <div class="metric-display-val" id="insights-main-value">0%</div>
+            <p style="color: var(--text-2); font-size: 12px; margin: 4px 0 0 0;" id="insights-sub-label">across all managed habits</p>
+          </div>
+          <div class="context-stats-list" id="insights-details-list"></div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

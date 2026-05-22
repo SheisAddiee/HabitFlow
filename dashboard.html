@@ -8,12 +8,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Clean layout structures to align top items perfectly */
+    .dashboard-header-block { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; width: 100%; }
+    .header-user-meta { display: flex; align-items: center; gap: 16px; }
+    .actions-group-deck { display: flex; align-items: center; gap: 12px; }
+    
+    /* Interactive top accessory item layout styling */
+    .header-date-badge { font-size: 13px; font-weight: 600; color: var(--text-2); padding: 8px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; }
+    .header-action-icon-btn { background: var(--bg-card); border: 1px solid var(--border); width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--text-2); cursor: pointer; transition: all 0.2s; }
+    .header-action-icon-btn:hover { border-color: var(--purple); color: var(--purple); }
+    
+    /* Global user avatar frame badge */
+    .top-deck-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--purple); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2); }
+  </style>
 </head>
 <body>
 
   <div class="app-shell">
 
-    <!-- Sidebar -->
     <aside class="sidebar">
       <a href="index.html" class="logo">
         <span class="logo-mark">
@@ -35,11 +48,11 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
           Habits
         </a>
-        <a href="#">
+        <a href="calendar.html">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           Calendar
         </a>
-        <a href="#">
+        <a href="profile.html">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           Profile
         </a>
@@ -56,175 +69,52 @@
     </aside>
     <div class="backdrop"></div>
 
-    <!-- Main -->
     <main class="main">
-      <div class="main-header">
-        <button class="menu-toggle" aria-label="Open menu">
+      
+      <div class="dashboard-header-block">
+        <button class="menu-toggle" aria-label="Open menu" style="margin-top: 4px; margin-right: 12px;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
 
-        <div class="actions">
-          <span>May 17, 2026</span>
-          <button class="icon-btn" aria-label="Notifications">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
-          </button>
-          <div class="avatar">AJ</div>
+        <div class="greeting" style="flex-grow: 1;">
+          <h1 style="font-size: 24px; font-weight: 800; margin: 0 0 4px 0;">Good morning! 👋</h1>
+          <p style="margin: 0; font-size: 14px; color: var(--text-2);">Let's make today productive.</p>
+        </div>
+
+        <div class="header-user-meta">
+          <div class="actions-group-deck">
+            <span class="header-date-badge">May 20, 2026</span>
+            <button class="btn btn-primary" id="add-habit-btn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    Add Habit
+</button>
+          </div>
+          <div class="top-deck-avatar avatar">AJ</div>
         </div>
       </div>
 
-      <div class="greeting">
-        <h1>Good morning, Alex! 👋</h1>
-        <p>Let's make today productive.</p>
-      </div>
-
-      <!-- Stat grid -->
       <div class="stat-grid">
         <div class="stat-card">
           <div class="label">Total Habits</div>
-          <div class="value">6</div>
-          <div class="delta">+1 from yesterday</div>
+          <div class="value">0</div>
         </div>
         <div class="stat-card">
-          <div class="label">Completed Today</div>
-          <div class="value">4</div>
-          <div class="delta muted">67% completed</div>
+          <div class="label">Total Completions</div>
+          <div class="value">0</div>
         </div>
         <div class="stat-card">
           <div class="label">Current Streak <span>🔥</span></div>
-          <div class="value">12</div>
-          <div class="delta muted">days</div>
-        </div>
-        <div class="stat-card">
-          <div class="label">Best Streak <span>🏆</span></div>
-          <div class="value">28</div>
-          <div class="delta muted">days</div>
+          <div class="value">0</div>
         </div>
       </div>
 
-      <!-- Today's habits -->
-      <div class="section-head">
+      <div class="section-head" style="margin-top: 12px; margin-bottom: 20px;">
         <h2>Today's Habits</h2>
-        <button class="btn btn-primary btn-sm">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Add Habit
-        </button>
+        
       </div>
 
       <div class="habit-list">
-
-        <!-- Habit row 1 -->
-        <div class="habit-row">
-          <div class="habit-info">
-            <div class="habit-icon blue">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s5.5 6.4 5.5 11.3a5.5 5.5 0 1 1-11 0C6.5 9.1 12 2.7 12 2.7z"/></svg>
-            </div>
-            <div>
-              <h4>Drink Water</h4>
-              <span>8 glasses a day</span>
-            </div>
-          </div>
-          <div class="habit-streak"><div class="num">12</div><div class="lbl">days</div></div>
-          <div class="habit-week">
-            <div class="day-mark">M<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">T<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">W<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">T<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">F<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">S<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">S<div class="ck skip"></div></div>
-          </div>
-          <button class="check-btn done">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </button>
-          <button class="kebab" aria-label="More">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
-          </button>
         </div>
-
-        <!-- Habit row 2 -->
-        <div class="habit-row">
-          <div class="habit-info">
-            <div class="habit-icon orange">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5l11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7-7"/><path d="m14 21 7-7"/></svg>
-            </div>
-            <div>
-              <h4>Exercise</h4>
-              <span>30 minutes</span>
-            </div>
-          </div>
-          <div class="habit-streak"><div class="num">7</div><div class="lbl">days</div></div>
-          <div class="habit-week">
-            <div class="day-mark">M<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">T<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">W<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">T<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">F<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">S<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">S<div class="ck miss"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></div>
-          </div>
-          <button class="check-btn"></button>
-          <button class="kebab" aria-label="More">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
-          </button>
-        </div>
-
-        <!-- Habit row 3 -->
-        <div class="habit-row">
-          <div class="habit-info">
-            <div class="habit-icon green">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-            </div>
-            <div>
-              <h4>Read Book</h4>
-              <span>20 pages</span>
-            </div>
-          </div>
-          <div class="habit-streak"><div class="num">15</div><div class="lbl">days</div></div>
-          <div class="habit-week">
-            <div class="day-mark">M<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">T<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">W<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">T<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">F<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">S<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">S<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-          </div>
-          <button class="check-btn done">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </button>
-          <button class="kebab" aria-label="More">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
-          </button>
-        </div>
-
-        <!-- Habit row 4 -->
-        <div class="habit-row">
-          <div class="habit-info">
-            <div class="habit-icon violet">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 22a8 8 0 0 1 16 0"/></svg>
-            </div>
-            <div>
-              <h4>Meditate</h4>
-              <span>10 minutes</span>
-            </div>
-          </div>
-          <div class="habit-streak"><div class="num">3</div><div class="lbl">days</div></div>
-          <div class="habit-week">
-            <div class="day-mark">M<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">T<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">W<div class="ck skip"></div></div>
-            <div class="day-mark">T<div class="ck done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div></div>
-            <div class="day-mark">F<div class="ck miss"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></div>
-            <div class="day-mark">S<div class="ck skip"></div></div>
-            <div class="day-mark">S<div class="ck skip"></div></div>
-          </div>
-          <button class="check-btn"></button>
-          <button class="kebab" aria-label="More">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
-          </button>
-        </div>
-
-      </div>
     </main>
   </div>
 

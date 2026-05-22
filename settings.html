@@ -8,6 +8,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Premium Settings Control Layout Matrix */
+    .settings-workspace-box { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+    .settings-block-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+    .settings-block-card h3 { font-size: 13px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 16px 0; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    
+    /* Rows structure */
+    .settings-control-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .settings-control-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .control-left-meta h4 { font-size: 15px; font-weight: 600; color: var(--text); margin: 0 0 4px 0; }
+    .control-left-meta p { font-size: 12px; color: var(--text-2); margin: 0; }
+
+    /* Interactive Dropdown components */
+    .settings-dropdown-select { background: var(--bg-app); border: 1px solid transparent; border-radius: 8px; padding: 8px 12px; font-size: 13px; font-weight: 500; color: var(--text); cursor: pointer; outline: none; transition: all 0.2s; }
+    .settings-dropdown-select:hover { filter: brightness(0.95); }
+
+    /* Action triggers button rows */
+    .action-row-trigger { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 10px; background: var(--bg-app); border: 1px solid var(--border); cursor: pointer; transition: all 0.2s; width: 100%; text-align: left; margin-bottom: 12px; }
+    .action-row-trigger:last-child { margin-bottom: 0; }
+    .action-row-trigger:hover { filter: brightness(0.95); }
+    .action-left-wrapper { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600; color: var(--text); }
+    .action-icon-slot { font-size: 16px; }
+    .chevron-arrow-indicator { color: var(--text-3); font-weight: 700; font-size: 14px; }
+  </style>
 </head>
 <body>
 
@@ -15,154 +39,96 @@
 
     <aside class="sidebar">
       <a href="index.html" class="logo">
-        <span class="logo-mark">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M5 12a7 7 0 1 0 14 0c0-3-2-5-7-10-5 5-7 7-7 10z"/></svg>
-        </span>
+        <span class="logo-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v6"/><path d="M5 12a7 7 0 1 0 14 0c0-3-2-5-7-10-5 5-7 7-7 10z"/></svg></span>
         HabitFlow
       </a>
-
       <nav class="sidebar-nav">
-        <a href="dashboard.html">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>
-          Dashboard
-        </a>
-        <a href="statistics.html">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          Statistics
-        </a>
-        <a href="habit.html">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-          Habits
-        </a>
-        <a href="#">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Calendar
-        </a>
-        <a href="#">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          Profile
-        </a>
-        <a href="settings.html" class="active">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1A2 2 0 1 1 4.3 17l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1A2 2 0 1 1 7 4.3l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
-          Settings
-        </a>
+        <a href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>Dashboard</a>
+        <a href="statistics.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Statistics</a>
+        <a href="habit.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Habits</a>
+        <a href="calendar.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Calendar</a>
+        <a href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
+        <a href="settings.html" class="active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1A2 2 0 1 1 4.3 17l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1A2 2 0 1 1 7 4.3l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Settings</a>
       </nav>
-
-      <a href="index.html" class="logout">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-        Log out
-      </a>
+      <a href="index.html" class="logout"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log out</a>
     </aside>
     <div class="backdrop"></div>
 
     <main class="main">
       <div class="main-header">
         <button class="menu-toggle" aria-label="Open menu">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
         <h1>Settings</h1>
         <div style="width: 38px"></div>
       </div>
 
-      <div class="settings-card">
-        <!-- Profile box -->
-        <div class="profile-box">
-          <div class="pic">AJ</div>
-          <div class="info">
-            <h3>Alex Johnson</h3>
-            <span>alex.johnson@email.com</span>
-          </div>
-          <button class="btn btn-secondary btn-sm edit-profile">Edit Profile</button>
-        </div>
-
-        <!-- Preferences -->
-        <h2 class="section-title">Preferences</h2>
-        <div class="settings-list">
-
-          <div class="settings-row">
-            <div class="ic">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-            </div>
-            <div class="text">
+      <div class="settings-workspace-box">
+        
+        <div class="settings-block-card">
+          <h3>Preferences</h3>
+          
+          <div class="settings-control-row">
+            <div class="control-left-meta">
               <h4>Dark Mode</h4>
-              <p>Switch between light and dark theme</p>
+              <p>Switch between light and dark visual themes</p>
             </div>
             <div class="toggle" data-action="dark"></div>
           </div>
 
-          <div class="settings-row">
-            <div class="ic">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
-            </div>
-            <div class="text">
+          <div class="settings-control-row">
+            <div class="control-left-meta">
               <h4>Daily Reminder</h4>
-              <p>Get reminded to track your habits</p>
+              <p>Get reminded to log your habit routines today</p>
             </div>
-            <div class="toggle on"></div>
+            <div class="toggle" id="toggle-daily-reminders"></div>
           </div>
 
-          <div class="settings-row">
-            <div class="ic">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <div class="settings-control-row">
+            <div class="control-left-meta">
+              <h4>Week Starts Day</h4>
+              <p>Choose what day your week row starts on</p>
             </div>
-            <div class="text">
-              <h4>Week Start Day</h4>
-              <p>Choose what day your week starts on</p>
-            </div>
-            <div class="select-wrap">
-              <select class="select">
-                <option>Monday</option>
-                <option>Sunday</option>
-                <option>Saturday</option>
-              </select>
-            </div>
+            <select class="settings-dropdown-select" id="select-week-start-day">
+              <option value="Monday">Monday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
           </div>
 
-          <div class="settings-row">
-            <div class="ic">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <div class="text">
+          <div class="settings-control-row">
+            <div class="control-left-meta">
               <h4>Time Format</h4>
-              <p>Choose your preferred time format</p>
+              <p>Choose your preferred display clock format mode</p>
             </div>
-            <div class="select-wrap">
-              <select class="select">
-                <option>12-hour</option>
-                <option>24-hour</option>
-              </select>
-            </div>
+            <select class="settings-dropdown-select" id="select-time-format">
+              <option value="12-hour">12-hour</option>
+              <option value="24-hour">24-hour</option>
+            </select>
           </div>
 
         </div>
 
-        <!-- Data & Privacy -->
-        <h2 class="section-title">Data &amp; Privacy</h2>
-        <div class="settings-list">
+        <div class="settings-block-card">
+          <h3>Data & Privacy</h3>
+          
+          <button class="action-row-trigger" id="btn-export-habitflow-data">
+            <div class="action-left-wrapper">
+              <span class="action-icon-slot">📥</span>
+              <div>Export Habit Data</div>
+            </div>
+            <span class="chevron-arrow-indicator">&gt;</span>
+          </button>
 
-          <div class="settings-row">
-            <div class="ic">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <button class="action-row-trigger" id="btn-reset-habitflow-data">
+            <div class="action-left-wrapper">
+              <span class="action-icon-slot" style="color: #EF4444;">♻️</span>
+              <div style="color: #EF4444;">Reset All Data</div>
             </div>
-            <div class="text">
-              <h4>Export Data</h4>
-              <p>Download your habit data</p>
-            </div>
-            <svg class="row-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
-
-          <div class="settings-row reset-row">
-            <div class="ic danger">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
-            </div>
-            <div class="text">
-              <h4 class="danger">Reset All Data</h4>
-              <p>This will permanently delete all your data</p>
-            </div>
-            <svg class="row-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-          </div>
+            <span class="chevron-arrow-indicator" style="color: #EF4444;">&gt;</span>
+          </button>
 
         </div>
+
       </div>
     </main>
   </div>
